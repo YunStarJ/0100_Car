@@ -16,6 +16,7 @@ io.on("connection", (socket)=>{
   // 접속시 socket.id
   backEndPlayers[socket.id] = {
     id: socket.id,
+    position: [0, 0.1, 0],
     color: `hsl(${360 * Math.random()}, 100%, 50%)`
   }
   console.log(backEndPlayers);
