@@ -1,0 +1,19 @@
+{
+  "name": "node_test",
+  "version": "1.0.0",
+  "description": "test node",
+  "main": "index.jsx",
+  "scripts": {
+    "start": "nodemon app",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "kangcg",
+  "license": "ISC",
+  "type": "module",
+  "dependencies": {
+    "socket.io": "^4.7.4"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.2"
+  }
+}
