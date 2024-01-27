@@ -92,7 +92,8 @@ useFrame((state, delta) => {
     cameraPosition.applyQuaternion(bodyRotation); // 카메라 위치를 자동차의 회전에 따라 변환
     cameraPosition.add(bodyPosition); // 카메라 위치를 자동차 위치에 더함
 
-    smoothedCameraPosition.lerp(cameraPosition, 5 * delta);
+    // smooth camera 전환속도
+    smoothedCameraPosition.lerp(cameraPosition, 3 * delta);
 
     state.camera.position.copy(smoothedCameraPosition);
 
