@@ -75,7 +75,7 @@ const Car = (props) => {
   );
   const [smoothedCameraTarget] = useState(() => new THREE.Vector3());
 
-// BackView 카메라
+// Back-View 카메라
 useFrame((state, delta) => {
   if (socket.id === props.player.id) {
       const worldQuaternion = new THREE.Quaternion();  // Quaternion 인스턴스 생성
