@@ -10,6 +10,8 @@ export const useWheels = (width, height, front, radius) => {
     const wheels = [useRef(null), useRef(null), useRef(null), useRef(null)];
 
     const wheelPosition = height * 0.3
+    const wheelDampingRelaxation = 1;
+    const wheelDampingCompression = 1;
 
     const wheelInfo = {
         radius,
@@ -18,8 +20,8 @@ export const useWheels = (width, height, front, radius) => {
         suspensionStiffness: 25, // 서스펜션 강성 (낮을수록 부드럽고 높을수록 강하게)
         suspensionRestLength: 0.1,  // 서스펜션 초기 길이 (미터)
         frictionSlip: 5, // 마찰력
-        dampingRelaxation: 1,
-        dampingCompression: 1, // 댐핑 관련 매개변수 (낮을수록 진동이 심하게, 높을수록 안정적)
+        dampingRelaxation: wheelDampingRelaxation,
+        dampingCompression: wheelDampingCompression, // 댐핑 관련 매개변수 (낮을수록 진동이 심하게, 높을수록 안정적)
         maxSuspensionForce: 100000, // 최대 서스펜션 힘 (넘어지지 않도록 하는데 사용)
         rollInfluence: 0.01, // 차량의 기울기에 따른 바퀴의 롤링 영향 (낮을수록 안정적, 높을수록 미끄러움)
         maxSuspensionTravel: 0.3, // 최대 서스펜션 이동 거리 (미터)
@@ -54,7 +56,7 @@ export const useWheels = (width, height, front, radius) => {
     const wheelFunc = () => ({
         collisionFilterGroup: 0,
         mass: 50,
-        type : 'Kinematic',
+
         shapes: [
             {
             args: [wheelInfo.radius, wheelInfo.radius, 0.025, 16],
@@ -62,6 +64,7 @@ export const useWheels = (width, height, front, radius) => {
             type: "Cylinder",
             },
         ],
+        type : 'Kinematic',
     });
 
     useCompoundBody(wheelFunc, wheels[0]);

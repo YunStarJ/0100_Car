@@ -33,7 +33,7 @@ function Scene() {
       <Canvas camera={{ fov:75, position:[1.5, 8, 4]}}>
         <ambientLight/>
         <directionalLight position={[0, 5, 5]} />
-        <Physics gravity={[0, -2.6, 0]}>
+        <Physics gravity={[0, -2.6, 0]} allowSleep>
           <Debug>
             {
               players.map((player) => (

@@ -11,6 +11,8 @@ import * as THREE from "three";
 import { useFrame, useThree } from "@react-three/fiber";
 // import useFollowCam from "./utils/useFollowCam";
 import { Object3D } from 'three'
+import { CarModel } from "./components/CarModel.jsx";
+import { Wheel } from "./components/Wheel.jsx";
 
 
 const Car = (props) => {
@@ -26,9 +28,9 @@ const Car = (props) => {
 
   let width, height, front, mass, wheelRadius;
 
-  width = 0.16;
+  width = 0.15;
   height = 0.12;
-  front = 0.17;
+  front = 0.14;
   wheelRadius = 0.05;
   mass = 150;
 
@@ -93,7 +95,7 @@ useFrame((state, delta) => {
     cameraPosition.add(bodyPosition); // 카메라 위치를 자동차 위치에 더함
 
     // smooth camera 전환속도
-    smoothedCameraPosition.lerp(cameraPosition, 3 * delta);
+    smoothedCameraPosition.lerp(cameraPosition, 4 * delta);
 
     state.camera.position.copy(smoothedCameraPosition);
 
@@ -131,13 +133,13 @@ useFrame((state, delta) => {
   return (
     <group ref={body}>
       <group ref={vehicle}>
-        <group ref={chassisBody}>
-          <DummyCarBody width={chassisBodyValue.width} height={chassisBodyValue.height} front={chassisBodyValue.front * 2} color={props.player.color} />
+        <group ref={chassisBody} position={[0,0.2,0]} name="chassisBody">
+            <CarModel/>
         </group>
-        <DummyWheel wheelRef={wheels[0]} radius={wheelRadius} />
-        <DummyWheel wheelRef={wheels[1]} radius={wheelRadius} />
-        <DummyWheel wheelRef={wheels[2]} radius={wheelRadius} />
-        <DummyWheel wheelRef={wheels[3]} radius={wheelRadius} />
+        <Wheel wheelRef={wheels[0]} radius={wheelRadius} />
+        <Wheel wheelRef={wheels[1]} radius={wheelRadius} />
+        <Wheel wheelRef={wheels[2]} radius={wheelRadius} />
+        <Wheel wheelRef={wheels[3]} radius={wheelRadius} />
       </group>
     </group>
   )

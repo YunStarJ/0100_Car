@@ -3,6 +3,7 @@ import { socket } from "../Scene.jsx";
 
 export const useVehicleControls = (vehicleApi, chassisApi, id) => {
     const [controls, setControls] = useState({});
+    const engineForce = 120;
     
     useEffect(()=>{
         if(socket.id === id){
@@ -30,35 +31,35 @@ export const useVehicleControls = (vehicleApi, chassisApi, id) => {
     },[])
 
     useEffect(() => {
-        if (controls.w) {
-            vehicleApi.applyEngineForce(120, 2);
-            vehicleApi.applyEngineForce(120, 3);
-        } else if (controls.s) {
-            vehicleApi.applyEngineForce(-120, 2);
-            vehicleApi.applyEngineForce(-120, 3);
+        if (controls.ArrowUp) {
+          vehicleApi.applyEngineForce(engineForce, 2);
+          vehicleApi.applyEngineForce(engineForce, 3);
+        } else if (controls.ArrowDown) {
+          vehicleApi.applyEngineForce(-engineForce, 2);
+          vehicleApi.applyEngineForce(-engineForce, 3);
         } else {
-            vehicleApi.applyEngineForce(0, 2);
-            vehicleApi.applyEngineForce(0, 3);
+          vehicleApi.applyEngineForce(0, 2);
+          vehicleApi.applyEngineForce(0, 3);
+          // chassisApi.velocity.set(0,0,0)
         }
-
-        if (controls.a) {
-            vehicleApi.setSteeringValue(-0.1, 0);
-            vehicleApi.setSteeringValue(-0.1, 1);
-            vehicleApi.setSteeringValue(0.35, 2);
-            vehicleApi.setSteeringValue(0.35, 3);
-           
-        } else if (controls.d) {
-            vehicleApi.setSteeringValue(0.1, 0);
-            vehicleApi.setSteeringValue(0.1, 1);
-            vehicleApi.setSteeringValue(-0.35, 2);
-            vehicleApi.setSteeringValue(-0.35, 3);
+    
+        if (controls.ArrowLeft) {
+          vehicleApi.setSteeringValue(0.35, 2);
+          vehicleApi.setSteeringValue(0.35, 3);
+          vehicleApi.setSteeringValue(-0.1, 0);
+          vehicleApi.setSteeringValue(-0.1, 1);
+        } else if (controls.ArrowRight) {
+          vehicleApi.setSteeringValue(-0.35, 2);
+          vehicleApi.setSteeringValue(-0.35, 3);
+          vehicleApi.setSteeringValue(0.1, 0);
+          vehicleApi.setSteeringValue(0.1, 1);
         } else {
           for (let i = 0; i < 4; i++) {
             vehicleApi.setSteeringValue(0, i);
           }
         }
-
-    }, [controls, vehicleApi, chassisApi]);
+    
+      }, [controls, vehicleApi, chassisApi]);
 
     return controls;
 }
