@@ -40,7 +40,6 @@ export const useVehicleControls = (vehicleApi, chassisApi, id) => {
         } else {
           vehicleApi.applyEngineForce(0, 2);
           vehicleApi.applyEngineForce(0, 3);
-          // chassisApi.velocity.set(0,0,0)
         }
     
         if (controls.ArrowLeft) {
@@ -59,7 +58,7 @@ export const useVehicleControls = (vehicleApi, chassisApi, id) => {
           }
         }
     
-      }, [controls, vehicleApi, chassisApi]);
+      }, [controls, vehicleApi]);
 
     return controls;
 }

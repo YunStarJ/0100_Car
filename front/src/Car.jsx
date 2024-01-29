@@ -1,16 +1,12 @@
-import { useBox, useCompoundBody, useRaycastVehicle } from "@react-three/cannon";
-import { useEffect, useMemo, useRef, useState, forwardRef } from "react";
-import DummyCarBody from "./dummy/DummyCarBody";
-import DummyWheel from "./dummy/DummyWheel";
+import { useCompoundBody, useRaycastVehicle } from "@react-three/cannon";
+import { useMemo, useRef, useState } from "react";
 import { useControls } from "leva";
 import { useWheels } from "./utils/useWheels";
 import { useVehicleControls } from "./utils/useVehicleControls";
 import { Vector3 } from "three";
 import { socket } from "./Scene.jsx";
 import * as THREE from "three";
-import { useFrame, useThree } from "@react-three/fiber";
-// import useFollowCam from "./utils/useFollowCam";
-import { Object3D } from 'three'
+import { useFrame} from "@react-three/fiber"
 import { CarModel } from "./components/CarModel.jsx";
 import { Wheel } from "./components/Wheel.jsx";
 
@@ -106,29 +102,6 @@ useFrame((state, delta) => {
     state.camera.lookAt(cameraTarget);
   }
 })
-
-// 철구형 카메라
-  // useFrame((state, delta)=>{
-  //   // makeFollowCam()
-  //   if (socket.id === props.player.id) {
-  //     const bodyPosition = chassisBody.current.getWorldPosition(worldPosition);
-
-  //     const cameraPosition = new THREE.Vector3();
-  //     cameraPosition.copy(bodyPosition);
-  //     cameraPosition.z += 2.25;
-  //     cameraPosition.y += 0.65;
-
-  //     const cameraTarget = new THREE.Vector3();
-  //     cameraTarget.copy(bodyPosition);
-  //     cameraTarget.y += 0.25;
-
-  //     smoothedCameraPosition.lerp(cameraPosition, 5 * delta);
-  //     smoothedCameraTarget.lerp(cameraTarget, 5 * delta);
-
-  //     state.camera.position.copy(smoothedCameraPosition);
-  //     state.camera.lookAt(smoothedCameraTarget);
-  //   }
-  // })
 
   return (
     <group ref={body}>

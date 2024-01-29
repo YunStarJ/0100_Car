@@ -1,6 +1,6 @@
 import { Canvas } from "@react-three/fiber";
-import { Ground } from "./Ground";
-import { Physics, Debug } from "@react-three/cannon";
+import { Ground } from "./components/Ground";
+import { Physics, Debug, useBox } from "@react-three/cannon";
 import Car from "./Car";
 import DummyBall from "./dummy/DummyBall";
 import DummyBox from "./dummy/DummyBox";

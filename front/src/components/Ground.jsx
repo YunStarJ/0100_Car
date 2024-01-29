@@ -1,5 +1,6 @@
 import React from 'react'
 import { usePlane } from "@react-three/cannon";
+import { Bridge } from './Bridge';
 
 export function Ground(props) {
 
@@ -15,6 +16,7 @@ export function Ground(props) {
     >
     <planeGeometry args={[30, 30]} />
     <meshStandardMaterial color="white" opacity={0}/>
+    <Bridge />
   </mesh>
   )
 }
